@@ -10,6 +10,7 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Linguaggio</th>
                             <th scope="col">Nome del progetto</th>
                             <th scope="col">Linguaggio utilizzato</th>
                             <th scope="col">link alla repository</th>
@@ -19,6 +20,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">{{ $project->id }}</th>
+                            <td>{{ $project->type}}: {{ $project->title}}</td>
                             <td>{{ $project->nome }}</td>
                             <td>{{ $project->linguaggio }}</td>
                             <td><a href=" {{ $project->url_repository }}">Click per visualizzare</a></td>

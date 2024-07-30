@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Type;
 use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 
 class ProjectSeeder extends Seeder
 {
@@ -85,9 +87,25 @@ class ProjectSeeder extends Seeder
                 "url_repository" => "https://github.com/Piccios/vue-boolzapp",
             ],
         ];
+        $types = Type::all();
+        $typeMap = [];
+        foreach ($types as $type) {
+            $typeMap[strtolower($type->name)] = $type->id;
+        }
 
         foreach ($projectList as $project) {
             $newProject = new Project();
+
+            // Se il linguaggio contiene più linguaggi, scegli il primo per la mappatura
+            $primaryLanguage = strtolower(explode(", ", $project["linguaggio"])[0]);
+
+            if (isset($typeMap[$primaryLanguage])) {
+                $newProject->type_id = $typeMap[$primaryLanguage];
+            } else {
+                // Gestisci il caso in cui il linguaggio non sia trovato nella mappa
+                $newProject->type_id = null;
+            }
+
             $newProject->nome = $project["nome"];
             $newProject->linguaggio = $project["linguaggio"];
             $newProject->url_repository = $project["url_repository"];

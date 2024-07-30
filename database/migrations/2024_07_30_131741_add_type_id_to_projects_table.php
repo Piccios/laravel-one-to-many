@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('type_id')->after('id')->nullable();
             //vincolo di chiave esterna sulla mia colonna x che fa rifierimento alla colonna y della tabella z
-            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('type_id')->references('id')->on('types')->cascadeOnDelete()->nullOnDelete();
         });
     }
 
@@ -24,7 +24,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            $table->dropForeign('projects_type_id_foreign');
+            $table->dropColumn('type_id');
         });
     }
 };
