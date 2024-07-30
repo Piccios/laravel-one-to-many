@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class MainController extends Controller
 
 {
@@ -28,7 +30,10 @@ class MainController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $project = new Project();
+        $types = Type::all();
+        return view('admin.projects.create', compact('project', 'types'));
+        // return view('admin.projects.create');
     }
 
     /**
@@ -56,7 +61,8 @@ class MainController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -68,8 +74,6 @@ class MainController extends Controller
         $data["nome"] = Auth::nome()->nome;
         $data["date"] = Carbon::now();
         $project->update($data);
-
-
         return redirect()->route('admin.projects.show', ['project' => $project->id])->with($project->nome . "e' stato aggiornato correttamente");
     }
 

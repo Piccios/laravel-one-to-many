@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 TypeSeeder::class,
-                PostSeeder::class
+                ProjectSeeder::class
                 ]
         );
     }

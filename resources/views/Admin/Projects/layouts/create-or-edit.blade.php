@@ -24,16 +24,21 @@
                         </div>
                     @endif
                     <div class="input-group-sm container mb-5 w-50">
-                        <label for="nome">Nome</label>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <label for="nome" >Nome</label>
+                        <input type="text" class="form-control mb-3" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome"
                             name="nome" value="{{ old('nome', $project->nome ?? '') }}">
-
-
-                        <label for="linguaggio">Linguaggio</label>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <label for="linguaggio">Linguaggi utilizzati</label>
+                        <input type="text" class="form-control mb-3" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" placeholder="Linguaggio" id="linguaggio"
                             name="linguaggio" value="{{ old('linguaggio', $project->linguaggio ?? '') }}">
+                        <label for="type_id">Linguaggio principale</label>
+                        <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                            @foreach ($types as $type)
+                                <option value='{{ $type->id }}'>{{ $type->name }}</option>
+                            @endforeach
+
+                        </select>
 
                         <label for="url_repository">Url_repository</label>
                         <input type="text" class="form-control" aria-label="Sizing example input"
@@ -49,7 +54,8 @@
                 </form>
             </div>
             <div class="row justify-content-center">
-                <div class="col-4"><a href="{{ route('admin.projects.index') }}" class="card-link d-flex justify-content-center">Torna alla lista dei progetti</a></div>
+                <div class="col-4"><a href="{{ route('admin.projects.index') }}"
+                        class="card-link d-flex justify-content-center">Torna alla lista dei progetti</a></div>
             </div>
 
         </div>
