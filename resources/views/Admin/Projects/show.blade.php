@@ -10,9 +10,9 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Linguaggio</th>
+                            <th scope="col">Linguaggio principale</th>
                             <th scope="col">Nome del progetto</th>
-                            <th scope="col">Linguaggio utilizzato</th>
+                            <th scope="col">Linguaggii utilizzati</th>
                             <th scope="col">link alla repository</th>
                             <th scope="col"></th>
                         </tr>
