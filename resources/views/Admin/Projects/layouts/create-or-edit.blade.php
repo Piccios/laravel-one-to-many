@@ -27,7 +27,7 @@
                         <label for="nome">Nome</label>
                         <input type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome"
-                            name="nome" value="{{ old('nome', $project->nome) }}">
+                            name="nome" value="{{ old('nome', $project->nome ?? '') }}">
 
 
                         <label for="linguaggio">Linguaggio</label>
