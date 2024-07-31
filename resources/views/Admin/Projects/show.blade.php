@@ -20,7 +20,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">{{ $project->id }}</th>
-                            <td><span class="badge" style="background: {{$project->type->color}}">{{ $project->type->name }}</span></td>
+                            <td><span class="badge" style="background:{{ $project->type->color }}">{{ $project->type->name }}</span></td>
                             <td>{{ $project->nome }}</td>
                             <td>{{ $project->linguaggio }}</td>
                             <td><a href=" {{ $project->url_repository }}">Click per visualizzare</a></td>
